@@ -1,5 +1,6 @@
-import { useCounter } from "../hooks/useCounter";
-import { useFetch } from "../hooks/useFetch";
+import { useCounter, useFetch } from "../hooks"; // archivo de barril en la carpeta hooks.
+import { LoadingQuote } from "./LoadingQuote";
+import { Quote } from "./Quote";
 
 export const MultipleCustomHooks = () => {
     const { increment, counter } = useCounter();
@@ -17,17 +18,11 @@ export const MultipleCustomHooks = () => {
     <hr />
 
     {
-        isLoading ? (
-        <div className="alert alert-info text-center">
-            <h1>
-                Loading...
-            </h1>
-        </div>)
+        isLoading ? 
+        <LoadingQuote/>
         :
-        <blockquote className="blockquote text-end">
-            <p className="mb-1" > {quote} </p>
-            <footer className="blockquote-footer">{author}</footer>
-        </blockquote>
+        
+        <Quote author={author} quote={quote} />
     }
 
         <button className="btn btn-dark" onClick={() => increment(1)} disabled={isLoading} >
